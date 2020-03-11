@@ -1,0 +1,27 @@
+<div class="row">
+<%= if @paragraph["column"] == "left" do %>
+    <article class="column">
+        <%= @paragraph["text"] |> markdown() |> raw() %>
+    </article>
+    <div class="column">
+    <%= for img <- @paragraph["images"] do %>
+    <figure>
+        <img src="<%= Routes.static_path(@conn, img["src"]) %>" alt="<%= img["caption"] %>"/>
+        <figcaption class=""><%= img["caption"] %></figcaption>
+    </figure>
+    <% end %>
+    </div>
+<% else %>
+    <div class="column">
+    <%= for img <- @paragraph["images"] do %>
+    <figure>
+        <img src="<%= Routes.static_path(@conn, img["src"]) %>" alt="<%= img["caption"] %>"/>
+        <figcaption class=""><%= img["caption"] %></figcaption>
+    </figure>
+    <% end %>
+    </div>
+    <article class="column">
+        <%= @paragraph["text"] |> markdown() |> raw() %>
+    </article>
+<% end %>
+</div>

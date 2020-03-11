@@ -1,0 +1,8 @@
+<section>
+    <div class="row">
+        <div class="column">
+            <h1><%= @page_title%></h1>
+        </div>
+    </div>
+    <%= render_many @pars, PolarisWeb.PageView, "paragraph.html", as: :paragraph, conn: @conn %>
+</section>

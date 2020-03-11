@@ -1,0 +1,17 @@
+<div class="row">
+    <article class="column">
+        <%= @paragraph["text"] |> markdown() |> raw() %>
+    </article>
+</div>
+<%= if length(@paragraph["images"]) > 0 do %>
+<div class="row">
+    <%= for img <- @paragraph["images"] do %>
+    <div class="column">
+    <figure>
+        <img src="<%= Routes.static_path(@conn, img["src"]) %>" alt="<%= img["caption"] %>"/>
+        <figcaption class=""><%= img["caption"] %></figcaption>
+    </figure>
+    </div>
+    <% end %>
+</div>
+<% end %>
